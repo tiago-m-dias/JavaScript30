@@ -65,8 +65,8 @@
             //console.log(e);
             console.log(e.keyCode);
 
-            let container = document.querySelector("audio[data-key='" + e.keyCode + "']");
-            container ? container.play() : console.log("void");
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"`);
+            audio ? audio.play() : console.log("void");
         })
     </script>
 
