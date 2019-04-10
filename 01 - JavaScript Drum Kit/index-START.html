@@ -70,10 +70,17 @@
             audio.currentTime = 0;
 
             const container = document.querySelector(`div[data-key="${e.keyCode}"`)
-            container.setAttribute('class', 'key playing');
+            container.classList.add('playing');
             audio.play();
-            container.setAttribute('class', 'key');
         })
+
+        function removeClass() {
+            const active = document.querySelector(".playing");
+            if (!active) return;
+            active.classList.remove('playing');
+        }
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener("transitionend", removeClass));
     </script>
 
 
