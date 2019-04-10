@@ -61,7 +61,15 @@
 
     <script>
         window.addEventListener('keydown', function(e) {
-            alert("key pressed!");
+            // alert("key pressed");
+            //console.log(e);
+            console.log(e.keyCode);
+
+            var container = document.querySelector("audio[data-key='" + e.keyCode + "']");
+            console.log(container);
+
+
+
         })
     </script>
 
