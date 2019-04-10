@@ -60,7 +60,7 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-        window.addEventListener('keydown', function(e) {
+        function playForKey(e) {
             // alert("key pressed");
             //console.log(e);
             console.log(e.keyCode);
@@ -72,15 +72,15 @@
             const container = document.querySelector(`div[data-key="${e.keyCode}"`)
             container.classList.add('playing');
             audio.play();
-        })
-
-        function removeClass() {
-            const active = document.querySelector(".playing");
-            if (!active) return;
-            active.classList.remove('playing');
         }
+
+        function removeClass(e) {
+            this.classList.remove('playing');
+        }
+
         const keys = document.querySelectorAll('.key');
         keys.forEach(key => key.addEventListener("transitionend", removeClass));
+        window.addEventListener('keydown', playForKey)
     </script>
 
 
