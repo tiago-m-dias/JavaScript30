@@ -25,16 +25,27 @@
         function getMatches(needle, haystack) {
             return haystack.filter(place => {
                 const regex = new RegExp(needle, 'gi');
+
                 return place.city.match(regex) || place.state.match(regex);
             });
         }
 
         function displayMatches() {
-            console.log(this.value);
-            console.log(getMatches(this.value, cities));
+            const matchesArray = getMatches(this.value, cities);
+            console.table(matchesArray);
+            const html = matchesArray.map(place => {
+                return `
+                  <li>
+                    <span class="name">${place.city}, ${place.state}</span>
+                    <span class="population">${place.population}</span>
+                  </li>
+                `;
+            });
+            suggestions.innerHTML = html;
         }
 
         const searchInput = document.querySelector('.search');
+        const suggestions = document.querySelector('.suggestions');
 
         searchInput.addEventListener('change', displayMatches);
         searchInput.addEventListener('keyup', displayMatches);
