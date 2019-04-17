@@ -28,6 +28,16 @@
                 return place.city.match(regex) || place.state.match(regex);
             });
         }
+
+        function displayMatches() {
+            console.log(this.value);
+            console.log(getMatches(this.value, cities));
+        }
+
+        const searchInput = document.querySelector('.search');
+
+        searchInput.addEventListener('change', displayMatches);
+        searchInput.addEventListener('keyup', displayMatches);
     </script>
 </body>
 
