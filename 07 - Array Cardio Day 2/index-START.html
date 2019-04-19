@@ -46,7 +46,7 @@
         // Array.prototype.some() // is at least one person 19 or older?
         const isOver18 = people.some(person => {
             const currentYear = new Date().getFullYear();
-            if ((currentYear - person.year) > 18) return true;
+            return ((currentYear - person.year) > 18);
         });
         console.log({
                 isOver18
