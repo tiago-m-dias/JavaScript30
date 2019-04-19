@@ -18,6 +18,7 @@
         context.lineJoin = 'round';
         context.lineCap = 'round';
 
+
         let isDrawing = false;
         let lastX = 0;
         let lastY = 0;
@@ -36,10 +37,21 @@
 
         }
 
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mousedown', (e) => {
             isDrawing = true;
             [lastX, lastY] = [e.offsetX, e.offsetY]; //set starting position from where the mouse is clicked
+            context.lineWidth = ((Math.random() * 100) + 1);
+            context.strokeStyle = getRandomColor();
         });
         canvas.addEventListener('mouseup', () => isDrawing = false);
         canvas.addEventListener('mouseout', () => isDrawing = false);
