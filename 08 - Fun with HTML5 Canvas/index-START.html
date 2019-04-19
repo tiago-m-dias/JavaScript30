@@ -30,6 +30,10 @@
             context.lineTo(e.offsetX, e.offsetY);
             context.stroke();
 
+            // lastX = e.offsetX;
+            // lastY = e.offsetY;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+
         }
 
         canvas.addEventListener('mousemove', draw);
