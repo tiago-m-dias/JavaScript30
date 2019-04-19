@@ -22,10 +22,13 @@
         let isDrawing = false;
         let lastX = 0;
         let lastY = 0;
+        let hue = 0;
+        let direction = true;
 
         function draw(e) {
             if (!isDrawing) return;
             console.log(e);
+            context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
             context.beginPath();
             context.moveTo(lastX, lastY);
             context.lineTo(e.offsetX, e.offsetY);
@@ -34,24 +37,24 @@
             // lastX = e.offsetX;
             // lastY = e.offsetY;
             [lastX, lastY] = [e.offsetX, e.offsetY];
+            hue++;
 
-        }
+            if (hue >= 360) hue = 0;
 
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+            if (context.lineWidth >= 70 || context.lineWidth <= 1) direction = !direction;
+            if (direction) {
+                context.lineWidth++;
+            } else {
+                context.lineWidth--;
             }
-            return color;
+
         }
 
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mousedown', (e) => {
             isDrawing = true;
             [lastX, lastY] = [e.offsetX, e.offsetY]; //set starting position from where the mouse is clicked
-            context.lineWidth = ((Math.random() * 100) + 1);
-            context.strokeStyle = getRandomColor();
+            //context.lineWidth = ((Math.random() * 100) + 1);
         });
         canvas.addEventListener('mouseup', () => isDrawing = false);
         canvas.addEventListener('mouseout', () => isDrawing = false);
