@@ -10,4 +10,14 @@ const ranges = player.querySelectorAll('.player__slider');
 
 /* Functions */
 
+function togglePlay(){
+    if(video.paused){
+        video.play();
+    } else {
+        video.pause();
+    }
+}
+
 /* Event Listeners */
+video.addEventListener('click', togglePlay);
+toggle.addEventListener('click', togglePlay);
