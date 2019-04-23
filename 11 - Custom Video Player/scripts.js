@@ -18,6 +18,13 @@ function togglePlay(){
     }
 }
 
+function updateButton() {
+    if (video.paused) toggle.textContent = "►"; else toggle.textContent = '\u1426';
+}
+
 /* Event Listeners */
 video.addEventListener('click', togglePlay);
+video.addEventListener('play', updateButton);
+video.addEventListener('pause', updateButton);
+
 toggle.addEventListener('click', togglePlay);
